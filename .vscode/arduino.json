@@ -1,6 +1,0 @@
-{
-    "sketch": "Blink.ino",
-    "port": "COM5",
-    "board": "arduino:avr:uno",
-    "output": "../ArduinoOutput"
-}
