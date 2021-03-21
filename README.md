@@ -1,3 +1,4 @@
 # Arduino
 
-#Mainプログラムは、Arduino.IDEにて編集可能
+Mainプログラムは、Arduino.IDEにてArduinoへアップロード可能
+プログラムはC++ベースで作成
