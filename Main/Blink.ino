@@ -19,10 +19,10 @@ int vel_y = 0;
 //-----------------------------------------------------------------------------
 //  ハンドラ定義(handler definition)
 //-----------------------------------------------------------------------------
-//TaskHandle_t Task1_Handler;
-//TaskHandle_t Task2_Handler;
-//TaskHandle_t Task3_Handler;
-TaskHandle_t Task4_Handler;
+TaskHandle_t Task1_Handler;
+TaskHandle_t Task2_Handler;
+TaskHandle_t Task3_Handler;
+//TaskHandle_t Task4_Handler;
 EventGroupHandle_t event_group = NULL; //イベントフラグのハンドラ定義
 //-----------------------------------------------------------------------------
 /**********************************************************
@@ -41,10 +41,10 @@ void setup() {
   pinMode(zeromotor, OUTPUT);
   //pinMode(dht11_ndata, INPUT);
 
-//   xTaskCreate(Task1, "Main", 128, NULL, 1, &Task1_Handler);
-//   xTaskCreate(Task2, "Soner", 128, NULL, 2, &Task2_Handler);
-//   xTaskCreate(Task3, "Camera", 128, NULL, 2, &Task3_Handler);
-   xTaskCreate(Task4, "ACC", 128, NULL, 2, &Task4_Handler);
+   xTaskCreate(Task1, "Main", 128, NULL, 1, &Task1_Handler);
+   xTaskCreate(Task2, "Soner", 128, NULL, 2, &Task2_Handler);
+   xTaskCreate(Task3, "Camera", 128, NULL, 2, &Task3_Handler);
+//   xTaskCreate(Task4, "ACC", 128, NULL, 2, &Task4_Handler);
    event_group = xEventGroupCreate(); //イベントフラグタスク生成
    xEventGroupClearBits(event_group, 0x000000); //フラグ初期化
    
@@ -78,13 +78,13 @@ void Task1(void *pvParameters)
  {
     Drive run_Drive;
     int state_Event = input(); //入力データを変数へ入力
-//    if (state_Event != NIL)
-//    {
+    if (state_Event != NIL)
+    {
       NowState = state_func(NowState, state_Event); //状態遷移
       Serial.print("NowState:");
       Serial.println(NowState);
       run_Drive.runmotor(NowState);
-//    }     
+    }     
     vTaskDelay(100);
    }
    vTaskDelay(1); // one tick delay (15ms) in between reads for stability??
@@ -92,7 +92,7 @@ void Task1(void *pvParameters)
 
 int input(void) //入力条件の決定
 {
-//  EventGroupHandle_t event_group;
+  EventGroupHandle_t event_group;
   EventBits_t eBits = xEventGroupWaitBits(event_group, 
   EVENT_init | EVENT_area_out | EVENT_obst_left | EVENT_obst_right | EVENT_emergency,
   pdTRUE, pdFALSE, 10);
