@@ -18,7 +18,7 @@ int receive::coor_rececive(int* pobst_coord_x, int* pobst_coord_y)
   if (Serial.available() == 4) {
     Serial.readBytes(coordinate, 4);
     if (coordinate[0] == 's' && coordinate[3] == 'e') {
-      //ここに送信処理を記述　ポインタを定義
+      //ここに送信処理を記述ポインタを定義
     *pobst_coord_x = coordinate[1];
     *pobst_coord_y = coordinate[2];
     return 1;
