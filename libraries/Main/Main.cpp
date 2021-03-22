@@ -18,7 +18,7 @@ int Delta[State_Num][Input_Num] = {{Run_advance, Run_Uturn, Run_avoidright, Run_
  * 戻値   ： イベント
  * 備考   ： 
 *********************************************************/
-/*
+
 int input(void) //入力条件の決定
 {
   EventGroupHandle_t event_group;
@@ -38,7 +38,7 @@ int input(void) //入力条件の決定
     return initial;
   
 }
-*/
+
 /**********************************************************
  * 関数名 ： state_func
  * 機能   ： 走行状態を決定する
