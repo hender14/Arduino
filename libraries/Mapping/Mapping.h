@@ -29,7 +29,7 @@ class Accelarate
   public:
     Accelarate();
     void Accelarate_sum(float* pacc_x, float* pacc_y, float* pacc_z);
- 
+
   private:
     int count_sum, count;
     Acc_calc run_Acc_calc;

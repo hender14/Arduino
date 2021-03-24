@@ -21,7 +21,7 @@ class distance
   public:
     distance();
     int Measure_dis(void);
- 
+
   private:
     int wave; //変数定義
 };

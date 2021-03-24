@@ -20,8 +20,8 @@
 #define Run_stop 4// 状態5
 
 #define NIL -1 //未定義
-#define initial 0 //　入力記号0
-#define area_out 1 //　入力記号1
+#define initial 0 //入力記号0
+#define area_out 1 //入力記号1
 #define obst_left 2// 入力記号2
 #define obst_right 3// 入力記号3
 #define emergency 4// 入力記号4
@@ -44,24 +44,6 @@
 //-----------------------------------------------------------------------------
 //  型定義(Type definition)
 //-----------------------------------------------------------------------------
-/*
-typedef struct
-{
-	runState_t state ;		//	走行状態
-	int measure_data ;	//	測定値
-} Statefunc_t;
-*/
-
-/*
-typedef enum
-{
-	init,		//	前方
-	area_out,			//	Uﾀｰﾝ
-	obst_left,			//	右へ回避
-	obst_right,			//	左へ回避
-	emergency,			//	停止
-} runEvent_t;
-*/
 
 //-----------------------------------------------------------------------------
 //  プロトタイプ宣言(Prototype declaration)
@@ -70,7 +52,6 @@ void Task1(void *pvParameters);
 void Task2(void *pvParameters);
 void Task3(void *pvParameters);
 void Task4(void *pvParameters);
-//int input(void);
 int state_func(int st, int c);
 //-----------------------------------------------------------------------------
 //  グローバル変数外部参照宣言

@@ -1,6 +1,4 @@
 #include <Arduino_FreeRTOS.h>  // Include Arduino FreeRTOS library
-//#include <LiquidCrystal_I2C.h> //LCD
-//#include <Wire.h>  //Acc_Gyro_check, LCD
 #include <JY901.h>  //Acc_Gyro_check
 #include <Main.h> 
 #include <distance.h> 
@@ -39,15 +37,14 @@ void setup() {
   pinMode(leftmotor, OUTPUT);
   pinMode(rightmotor, OUTPUT);
   pinMode(zeromotor, OUTPUT);
-  //pinMode(dht11_ndata, INPUT);
 
-   xTaskCreate(Task1, "Main", 128, NULL, 1, &Task1_Handler);
-   xTaskCreate(Task2, "Soner", 128, NULL, 2, &Task2_Handler);
-   xTaskCreate(Task3, "Camera", 128, NULL, 2, &Task3_Handler);
+  xTaskCreate(Task1, "Main", 128, NULL, 1, &Task1_Handler);
+  xTaskCreate(Task2, "Soner", 128, NULL, 2, &Task2_Handler);
+  xTaskCreate(Task3, "Camera", 128, NULL, 2, &Task3_Handler);
 //   xTaskCreate(Task4, "ACC", 128, NULL, 2, &Task4_Handler);
    event_group = xEventGroupCreate(); //イベントフラグタスク生成
    xEventGroupClearBits(event_group, 0x000000); //フラグ初期化
-   
+  
    vTaskStartScheduler();  // start scheduler, however, if it doesn't exist, it seems to work.
 }
 
@@ -75,18 +72,18 @@ void Task1(void *pvParameters)
   (void) pvParameters;
   int NowState = Run_advance; //初期状態   
   while(1)
- {
+  {
     Drive run_Drive;
     int state_Event = input(); //入力データを変数へ入力
     if (state_Event != NIL)
     {
       NowState = state_func(NowState, state_Event); //状態遷移
-      Serial.print("NowState:");
-      Serial.println(NowState);
+//      Serial.print("NowState:");  //デバッグ用
+//      Serial.println(NowState); //デバッグ用
       run_Drive.runmotor(NowState);
     }     
     vTaskDelay(100);
-   }
+  }
    vTaskDelay(1); // one tick delay (15ms) in between reads for stability??
 }
 
@@ -126,8 +123,8 @@ void Task2(void *pvParameters)
     distance run_distance;
     int width;
     width = run_distance.Measure_dis();
-    Serial.print("width:");
-    Serial.println(width);
+//    Serial.print("width:"); //デバッグ用
+//    Serial.println(width);  //デバッグ用
       if (width > 100) 
         {xEventGroupSetBits(event_group, EVENT_emergency);}
       else
@@ -148,7 +145,7 @@ void Task3(void *pvParameters)
 {
   (void) pvParameters;
 
-   while(1)
+  while(1)
   {
     receive run_receive;
     int obst_coord_x, obst_coord_y;
@@ -187,5 +184,5 @@ void Task4(void *pvParameters)
     }
   vTaskDelay(500);
   }
-  vTaskDelay(1); // one tick delay (15ms) in between reads for stability??
+  vTaskDelay(1);
 }

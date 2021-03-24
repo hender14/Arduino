@@ -13,11 +13,11 @@ motor::motor()
  * 戻値   ： なし
  * 備考   ： 
  *********************************************************/
- void motor::drv_Motor (void) {
+void motor::drv_Motor (void) {
   analogWrite(leftmotor, 255*0.5);
   analogWrite(rightmotor, 255*0.6);
   analogWrite(zeromotor, 0);
- }
+}
 
 /**********************************************************
  * 関数名 ： Uturn_Motor
@@ -26,7 +26,7 @@ motor::motor()
  * 戻値   ： なし
  * 備考   ： ジャイロの値も参照
  *********************************************************/
- void motor::Uturn_Motor_left (float output) {
+void motor::Uturn_Motor_left (float output) {
   analogWrite(leftmotor, 255 * output);
   analogWrite(rightmotor, 0);
   analogWrite(zeromotor, 0);
@@ -40,7 +40,7 @@ motor::motor()
  * 戻値   ： なし
  * 備考   ： ジャイロの値も参照
  *********************************************************/
- void motor::Uturn_Motor_right (float output) {
+void motor::Uturn_Motor_right (float output) {
   analogWrite(leftmotor, 0);
   analogWrite(rightmotor, 255 * output);
   analogWrite(zeromotor, 0);
@@ -53,7 +53,7 @@ motor::motor()
  * 戻値   ： なし
  * 備考   ： 
  *********************************************************/
- void motor::avoid_Motor_left (void) {
+void motor::avoid_Motor_left (void) {
   analogWrite(leftmotor, 255*0.5);
   analogWrite(rightmotor, 0);
   analogWrite(zeromotor, 0);
@@ -66,7 +66,7 @@ motor::motor()
  * 戻値   ： なし
  * 備考   ： 
  *********************************************************/
- void motor::avoid_Motor_right (void) {
+void motor::avoid_Motor_right (void) {
   analogWrite(leftmotor, 0);
   analogWrite(rightmotor, 255*0.5);
   analogWrite(zeromotor, 0);
@@ -79,7 +79,7 @@ motor::motor()
  * 戻値   ： なし
  * 備考   ： 
  *********************************************************/
- void motor::stop_Motor (void) {  
+void motor::stop_Motor (void) {  
   analogWrite(leftmotor, 0);
   analogWrite(rightmotor, 0);
   analogWrite(zeromotor, 0);

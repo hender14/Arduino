@@ -13,7 +13,7 @@ avoid::avoid();
 }
 
 void avoid::avoid_judge(void)
- {
+{
     coordinate = run_receive.coor_rececive();
     if (coordinate[1] < 100) {
     return Run_stop;
